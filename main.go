@@ -11,11 +11,12 @@ var commitVersion string
 
 func main() {
 	postPath := os.Args[1]
+	runPort := os.Args[2]
 	fmt.Printf("SimonSays! - Version %s\n", commitVersion)
 	r := gin.Default()
 	r.GET("/ping", ping)
 	r.POST(postPath, postEcho)
-	r.Run(":5050")
+	r.Run(fmt.Sprintf(":%s", runPort))
 }
 
 func ping(c *gin.Context) {
